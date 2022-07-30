@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AG GRID</title>
+	<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css"/>
+</head>
+<body>
+
+<button onclick="deselect()">DESELECT</button>
+
+<div class="xcontainer">
+<div id="myGrid" class="ag-theme-alpine" style="height:100%">
+</div>
+	
+</div>
+
+</body>
+
+<style>
+.xcontainer{
+	border:1px solid red;
+	width:auto;
+	height:calc(100vh - 60px);
+}
+</style>
+
+<script>
+
+class custRenderer{
+	init(params){
+		this.params = params;
+		this.eGui = document.createElement('div');
+		this.eGui.innerHTML = `
+			<span>
+			<span class="my-value"></span>
+			<button class="btn-simple">PUSH </button>
+			<input type="text" class="xinput" />
+			</span>
+		`;
+
+		this.eButton = this.eGui.querySelector('.btn-simple');
+		this.eValue = this.eGui.querySelector('.my-value');
+		this.xEdit = this.eGui.querySelector('.xinput');
+
+		// set value into cell
+		this.cellValue = this.getValueToDisplay(params);
+		this.eValue.innerHTML = this.cellValue;
+
+		// add event listener to button
+		this.eventListener = () => this.params.stopEditing();
+		this.blurListener = (e)=>{ this.params.stopEditing();console.log(this.xEdit.value);};
+		this.eButton.addEventListener('click', this.eventListener);		
+	//	this.xEdit.addEventListener('focusout',this.blurListener);
+	}
+	
+	getGui(){
+		return this.eGui;
+	}
+	
+	refresh(params){
+		this.cellValue = this.getValueToDisplay(params);
+		this.eValue.innerHTML = this.cellValue;
+		return true;
+	}
+	
+	destroy(){
+		if (this.eButton){
+			this.eButton.removeEventListener("click",this.eventListener);
+		}
+		
+		if (this.xEdit){
+			this.xEdit.removeEventListener("blur",this.blurListener);
+		}
+		
+	}
+	
+	getValue(){
+		return this.xEdit.value;
+	}
+	
+	getValueToDisplay(params){
+			return params.valueFormatted ? params.valueFormatted : params.value;
+	}
+	
+	afterGuiAttached(){
+		this.xEdit.focus();
+		this.xEdit.value = this.params.value;
+	}
+	
+	
+	AfterEnd(){
+		return false;
+	}
+}
+
+
+function deselect(){
+	gridOptions.api.deselectAll();
+}
+
+const gridOptions={
+	columnDefs:[
+		{
+			field:"make",
+			editable:true,
+		},
+		{
+			field:"model",
+			valueGetter:"data.model",
+			editable:true,
+			cellEditor:custRenderer,
+			
+		},
+		{
+			field:"price"
+		}
+	],
+	defaultColDef:{
+		sortable:true, 
+		filter:true,
+		singleClickEdit:true,
+		editable:true
+		},
+	rowSelection:"single",
+	animateRows:true,
+	suppressLoadingOverlay:true,
+	onCellClicked:(params)=>{
+		//console.log("cell clicked",params);
+	},
+	stopEditingWhenCellsLoseFocus:true,
+	//stopEditingWhenGridLosesFocus:true,
+	onCellValueChanged:(e)=>{
+		console.log(e.oldValue, e.newValue);
+	},
+	onCellEditingStopped:(e)=>console.log("editing stopped")
+};
+	
+const eGridDiv = document.getElementById("myGrid");
+new agGrid.Grid(eGridDiv,	gridOptions);
+
+fetch("https://www.ag-grid.com/example-assets/row-data.json")
+.then(response=>response.json(),e=>console.log(e))
+.then(data=>{
+	gridOptions.api.setRowData(data);
+	console.log(data);
+});
+
+
+
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!doctytpe html>
+
+
+
+
+<html>
+
+<meta charset="utf-8">
+
+<head>
+
+
+<script type='text/javascript'>
+
+function hello()
+{
+
+	// this is an array
+	// let x = [1,2,3,4,5];
+	
+	// this is also an array
+	let x = new Array(5); 
+	
+	let a = 3, b = 10;
+	
+	let c = (a < b ? a:b);
+	
+	
+	console.log(c);
+	return;
+	
+	x[0]=33;
+	x[1]=27;
+	x[2]=5;
+	x[3]=6;
+	x[4]=19;
+	x[5]=11;
+	x.push(5);
+	x.push(4);
+	x.push(3);
+	x.push(2);
+	x.push(1);
+	
+	console.clear();
+	console.log(x.length);
+	for (i=0; i < x.length; i++)
+		console.log('Yo!!!  ' + x[i]);
+}
+
+
+window.addEventListener("load",hello,true);
+
+</script>
+
+
+</head>
+
+<body>
+
+
+
+</body>
+
+</html>

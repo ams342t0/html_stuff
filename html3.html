@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+
+<body>
+
+<div class="l1">
+	<div>
+		<p class="l2">TEST</p>
+	</div>
+</div>
+
+
+
+	<div class="l1">
+		<p class="l2">TEST2</p>
+	</div>
+
+
+	<button id="btn">HERE</button>
+	<div id="cont" class="f-cont">
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+
+	</div>
+
+</body>
+
+<footer>
+<script>
+	function eh(event){
+		console.log(event);
+	}
+	let id = document.getElementById("btn");
+	id.addEventListener("click",(e)=>{console.log(e);},true);
+</script>
+
+<style>	
+	.l1>.l2{
+		color:red;
+	}
+	
+	.g-cont{
+	
+		display:grid;
+		width:50vw;
+		height:50vh
+		grid-template-columns: 25% 25% 25% 25%;
+		grid-gap:20px;
+		padding:0px;
+	}
+
+	.f-cont{
+		overflow:hidden;
+		overflow-y:auto;
+		border:1px solid green;
+		width:600px;
+		height:calc(100vh - 50vh);
+		display:flex;
+		justify-content:center;
+		flex-wrap:wrap;
+		flex-direction:row;
+	}
+	
+	.box{
+		margin:20px;
+		background-color: blue;
+		border: 2px solid;
+		border-color: red;
+		width: 115px;
+		height: 115px;
+	}
+</style>
+
+</footer>
+
+</html>

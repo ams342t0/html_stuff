@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head>
+<style>
+input{
+	display:block;
+}
+
+input:not(valid){
+	border:3px solid red;
+}
+
+input:valid{
+	border:1px solid blue;
+}
+
+
+</style>
+</head>
+
+<body>
+<my-tag id="xman"></my-tag>
+
+<p id="okid" someprop="100">TEST</p>
+
+<form method="get">
+<input type="number" min="-1" max="1" step="0.1" style="width:75px;text-align:center;"
+	name="num"
+	id="num"
+>
+
+<input type="password" id="pw" name="pw" required>
+
+
+<input type="email" name="telno" id="telno" required placeholder="email!!!">
+
+
+<input type="text" placeholder="here" required>
+
+
+<input type="radio">
+	<option>item 1</option>
+</input>
+
+<button toggle>click</button>
+<input type="submit">SUBMIT</input>
+
+</form>
+
+
+<script>
+	console.log(document.getElementById("okid").attributes.someprop.value);
+	console.log(document.getElementById("xman"));
+</script>
+	
+</body>
+
+
+</html>

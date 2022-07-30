@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+	<link rel="icon" type="image/jpg" href="https://3.bp.blogspot.com/-F6Jo0yjh0xM/UyS8OvQuk9I/AAAAAAAABkc/xQ7s3yW47Tc/s1600/Logo+BioHazard.JPG">
+
+    <script>
+		var t=true;
+
+		setInterval(()=>{
+			if (t)
+				document.title="HELLO";
+			else
+				document.title="WORLD!";
+			t=!t;
+		},1000);
+
+		const max = 15;
+		var   len;
+		var   pos;
+		var   editor;
+		var   el;
+	
+	
+		function nodeIndex(n,a){
+			let retval = -1;
+			for(i=0;i<a.length;i++)
+				if (n === a[i]){
+					retval = i;
+					break;
+				}
+				
+			return retval;
+		}
+		
+		function trim(start,end){
+			let r = editor.selection.getRng();
+			let n = r.commonAncestorContainer;
+			let nr = document.createRange();
+			nr.startOffset = 0;
+			nr.endOffset = 3;
+			editor.focus();
+			console.log(nr);
+		}
+
+		let opt = {
+        selector: '#mytextarea',
+		init_instance_callback:function(ed){
+			editor = ed;
+			ed.on("input",(e)=>{
+				console.clear();
+				console.log("input",e);
+			});
+			
+			ed.on("SelectionChange",(e)=>{
+				let n = ed.selection.getNode();
+				let pa = n.parentNode.childNodes;
+				pos = ed.selection.getRng().startOffset;
+				len = ed.getContent({format:'text'}).length - 1;
+				shtml = ed.getContent({format:'html'});
+				el = document.createElement('html');
+				el.innerHTML = shtml;
+	 			el.childNodes[1].children[0].remove();
+				trim(0,0);
+
+			});
+		}
+		
+      };
+      
+	  tinymce.init(opt);
+    </script>
+
+  </head>
+
+  <body>
+  <h1>TinyMCE Quick Start Guide</h1>
+    <form method="post">
+      <div id="mytextarea"></div>
+    </form>
+  </body>
+</html>

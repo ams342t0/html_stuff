@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<body>
+<button id="left"> <span style="font-weight:700"> < </span> </button>
+<button id="right"> <span style="font-weight:700"> > </span> </button>
+<hr>
+<div class = "container">
+	<div class="box active" onclick="selectMe()"></div>
+	<div class="box" onclick="selectMe()"></div>	
+	<div class="box active" onclick="selectMe()"></div>		
+	<div class="box" onclick="selectMe()"></div>		
+</div>
+</body>
+<style>
+.container{
+	width: 90%;
+	height: 160px;
+	border:1px solid green;
+	left: calc(50vw - 45%);	
+	position: absolute;
+	overflow: hidden;
+	white-space:nowrap;
+	text-align:center;
+}
+
+.box {
+	display:inline-block;
+	height: 95%;
+	width: 168px;
+	border: 1px solid blue;
+	background-color:white;
+	border-radius:50%;
+	position:relative;
+	margin-right: 182px;
+}
+
+.box:after {
+	content:"";
+	display:inline-block;
+	position:relative;
+	width: 350px;
+	border:1px solid red;
+	height: 7px;
+	left: 84px;
+	background-color:red;
+	top:calc(47.5% - 3.5px);
+	z-index:-1;
+}
+
+/*
+.box:last-child{
+	margin-right:0px;
+}
+
+*/
+.box:last-child:after{
+	background-color:transparent;
+	border-color:transparent;
+}
+
+
+.box.active {
+	background-color:pink;
+}
+
+
+</style>
+<script>
+	var cont = document.getElementsByClassName("container")[0];
+	var actv = document.getElementsByClassName("active")[1];
+	var bLeft = document.getElementById("left");
+	var bRight = document.getElementById("right");
+	var xScroll;
+	
+	function centerActive(){
+		let tLeft = actv.offsetLeft;
+		let sWidth = cont.scrollWidth;
+		let vWidth = cont.offsetWidth;
+		let tWidth = 168;
+		let lWidth = 182;
+
+		bLeft.disabled = true;
+		bRight.disabled = true;
+
+		xScroll = 0;
+	
+/*	
+		if (tLeft < tWidth) 
+			xScroll = 0;
+		else if (tLeft > sWidth - tWidth) {
+			xScroll = sWidth - vWidth;
+		}
+		else {
+			xScroll = tLeft - (vWidth-tWidth)/2;
+		}
+*/
+
+		xScroll = tLeft - (vWidth - tWidth) / 2;
+		
+		if (xScroll <= 0)
+			xScroll = 0;
+		else if (xScroll >= (sWidth - vWidth)) 
+			xScroll = sWidth - vWidth + 10;
+		
+		cont.scrollTo({top:0,left:xScroll,behavior:"smooth"});
+	}
+	
+	function updateScroll(){
+		let sWidth = cont.scrollWidth;
+		let vWidth = cont.offsetWidth;
+
+		if (vWidth < sWidth) {
+			bLeft.disabled = cont.scrollLeft <= 0;
+			bRight.disabled = cont.scrollLeft  > (sWidth - vWidth);
+		}
+	}
+	
+	function clickScroll(v){
+		let sWidth = cont.scrollWidth;
+		let vWidth = cont.offsetWidth;
+
+		let vScroll = cont.scrollLeft;
+		
+		vScroll += v;
+		if (vScroll < 0)
+			vScroll = 0;
+		else if (vScroll > sWidth - vWidth) 
+			vScroll = sWidth - vWidth + 10;
+			
+		cont.scrollTo({top:0,left:vScroll,behavior:"smooth"});
+	}
+	
+	function selectMe($event){
+		console.log(event.target.classList);
+	}
+	
+	centerActive();	
+	updateScroll();
+	
+	window.addEventListener("resize",()=>{centerActive();updateScroll()},true);
+	cont.addEventListener("scroll",updateScroll,true);
+	
+	bLeft.addEventListener("click",()=>clickScroll(-350),true);
+	bRight.addEventListener("click",()=>clickScroll(350),true);
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html>
+<meta charset="utf-8">
+<head>
+<title>ANIMATE</title>
+
+<style>
+.some-circle{
+	radius:
+}
+
+.my-svg{
+	width:640px;
+	height:480px;
+	position:absolute;
+	left:calc(50vw - 320px);
+	top:calc(50vh - 240px);
+	background-color:blue;
+}
+
+.c3{
+	position:absolute;
+	cy:240px;
+	r:60px;
+	animation: b1 .3s linear infinite alternate;
+}
+
+.c2{
+	position:absolute;
+	cy:240px;
+	r:60px;
+	animation: b1 .3s ease-in infinite alternate;
+}
+
+.c1{
+	position:absolute;
+	cy:240px;
+	r:60px;
+	animation: b1 .3s ease-out infinite alternate;
+}
+
+.c4{
+	position:absolute;
+	cy:240px;
+	r:60px;
+	fill:rgb(238,103,48);
+	animation: b1 .3s cubic-bezier(1.0,0.1,0.2,0.5) infinite alternate;
+}
+
+@keyframes b1{
+	from {
+		
+		cy:100px;
+		
+	}
+	to{
+		cy:400px;
+	}
+}
+
+
+
+</style>
+</head>
+<body>
+
+<svg class="my-svg">
+	<circle cx="100px" class="c1"/>
+	<circle cx="250px" class="c2"/>
+	<circle cx="400px" class="c3"/>	
+	<circle cx="550px" class="c4"/>	
+
+</svg>
+
+</body>
+</html>

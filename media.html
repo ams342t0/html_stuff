@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+
+
+<head>
+
+<style>
+	.box{
+		width:100px;
+		height:100px;
+		left:100px;
+		top:100px;
+		border:1px solid green;
+	}
+</style>
+</head>
+
+<body>
+
+	<div class="box" id="box"></div>
+	<input type="text"></input>
+	<p id="p"></p>
+	<p id="p2"></p>
+	
+</body>
+
+<script type="text/javascript">
+	var box = document.getElementById("box");
+	var p   = document.getElementById("p");
+	var p2   = document.getElementById("p2");
+	
+	function boxHoverEventListener(e){
+		console.log(e);
+	}
+
+	box.addEventListener("mouseenter",boxHoverEventListener,true);
+	box.addEventListener("mouseleave",boxHoverEventListener,true);
+
+	window.addEventListener("keydown",e=>{
+		let inp = document.getElementsByTagName("input")[0];
+		switch (e.keyCode)
+		{
+			case 112:
+				
+				inp.focus();
+				inp.value="";
+				break;
+				
+			case 13:
+				p.innerText=inp.value;
+		}
+		p2.innerText= inp.value;
+	},true);
+
+	console.log(document.getElementsByTagName("body"));
+	console.log(box);
+</script>
+
+</html>

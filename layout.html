@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head>
+
+<style>
+
+
+.c{
+	display:flex;
+	justify-content:center;
+	flex-wrap: wrap;
+}
+
+.p{
+	cursor:pointer;
+	margin: 10px;
+	border: transparent;
+	border-radius: 5px;
+	background-color: gray;
+	font-size:2em;
+	padding: 20px;
+	font-family: "arial";
+	color: white;
+	font-weight: bold;
+	display:block;
+	width:10%;
+	text-align:center;
+	transition: 0.15s;
+	vertical-align: top;
+}
+
+.blk-all{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100vw;
+	margin:0px;
+	padding:0px;
+	height:100vh;
+	background-color:rgb(0,255,0,0.25);
+	border:2px solid red;
+	display:block;
+}
+
+.p:hover{
+	background-color: black;
+	left:20px;
+	transform: scale(1.5);
+}
+
+.p.x{
+	visibility:hidden;
+}
+
+.p.y{
+	display:visible;
+}
+	
+	
+.sl{
+	list-style-type: none;
+	margin:0px;
+	padding:0px;
+}
+
+.sl li{
+	margin: 10px;
+	background-color: green;
+	color: white;
+	font: bold 16px;
+	padding: 20px;
+	border-radius: 10px;
+	text-align:center;
+	display:inline;
+}
+
+li a{
+	color:white;
+	text-decoration: none;
+}
+
+
+.a1{
+	color: red;
+}
+
+.a2{
+	font-size: 60px;
+}
+
+.a1.a3{
+	background-color: blue;
+}
+
+.a1::selection{
+	content:"PE";
+	font-size:40px;
+	color:green;
+}
+
+li:nth-child(odd)>a{
+	font-weight:bold;
+	font-size:30px;
+}
+
+li:nth-child(even)>a{
+	font-style: italic;
+}
+
+li:first-child a{
+	color: blue;
+}
+
+.bi{
+	color: yellow;
+	width:300px;
+	height:300px;
+	border:1px solid red;
+	
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="blk-all"></div>
+
+<p class="a1" draggable="true">TEST LINE</p>
+
+
+<div class="bi" draggable="true" ondrag="console.log('dragged')"></div>
+<div class="bi" dropzone="copy"></div>
+
+<div class="c">
+	<DIV class="p y">
+		OUTPUT
+	</div>
+	
+	<p class="p y">OUTPUT</p>
+	<p class="p y">OUTPUT</p>
+	<p class="p y">OUTPUT</p>
+	<p class="p y">OUTPUT</p>
+</div>
+
+
+<ul class="sl">
+	<li> <a href="#">FOOD </a></li>
+	<li> <a href="#">MONEY </a></li>
+	<li> <a href="#">MEDICINE </a></li>
+	<li> <a href="#">WEAPONS </a></li>	
+</ul>
+
+
+
+
+</body>
+
+<script>
+	let i = 200;
+	
+	i=50;
+	
+	async function n(){
+		let p = new Promise(
+		(res)=>{
+		setTimeout(()=>{
+			res("timeout");
+		}, 3000);}
+		);
+		let r = await p;
+		console.log(r);
+		console.log("k");
+	}
+	n();
+	
+</script>
+
+</html>

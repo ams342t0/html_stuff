@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<meta charset='utf-8'>
+<head>
+<title>ANIM</title>
+<style>
+
+.l1{
+	stroke-width:200px;
+	stroke:#ff0000;
+	stroke-dashoffset:0;
+	stroke-dasharray:1000;
+	animation: lx 2s linear;
+}
+
+
+.tx{
+	font: bold 200px arial;
+}
+
+.l2{
+	stroke-width:5px;
+	stroke:red;
+}
+
+@keyframes lx{
+	from{
+		stroke-dashoffset:1000;
+	}
+	to{
+		stroke-dashoffset:0;
+	}
+}
+
+@keyframes al2{
+	from {
+		r: 0;
+	}
+	to {
+		r: 100px;
+	}
+}
+
+.c{
+	stroke-width:5px;
+	stroke:red;
+	animation: al2 2s linear ;
+	animation-delay: 2s;
+}
+
+</style>
+</head>
+
+<body>
+<svg width="600" height="300">
+
+
+<g>
+<line x1="0" y1="2" x2="599" y2="2" class="l2"/>
+<line x1="0" y1="99" x2="599" y2="99" class="l2"/>
+<line x1="0" y1="199" x2="599" y2="199" class="l2"/>
+<line x1="0" y1="297" x2="599" y2="297" class="l2"/>
+<line x1="2" y1="0" x2="2" y2="299" class="l2"/>
+<line x1="597" y1="0" x2="597" y2="299" class="l2"/>
+</g>
+
+
+<line 
+clip-path="url(#c)"
+x1="0" y1="0" x2="639" y2="479" class="l1"/>
+
+<clipPath id="c">
+
+
+<text x="50" y="200" class="tx">
+Hello World!
+</text>
+
+
+
+</clipPath>
+
+<circle cx="120" cy="140" r="0" class="c"/>
+
+
+</svg>
+</body>
+</html>

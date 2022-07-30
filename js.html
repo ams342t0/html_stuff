@@ -1,0 +1,101 @@
+<!doctype html>
+
+<html>
+
+<meta charset="utf-8">
+
+
+
+
+<head>
+<title>JS</title>
+
+<script>
+
+</script>
+
+</head>
+
+
+<body>
+
+<input type="button" class="btn" value="CLICK" id="btn">
+<p class="btn" click="eventListener()">okidoki </p>
+<input type="text" oninput="inputListener('ok')">
+
+<div class="btn btn-primary">
+</div>
+
+<p>
+DuckDuckGo
+<br>
+Privacy, simplified.
+</P>
+
+</body>
+
+
+<style>
+	.btn{
+		background-color: #ff0000;
+		padding: 15px 20px;
+		border-radius: 5px;
+		border:none;
+		color: white;
+		font-weight: bold;
+		font-size: 16px;
+		display: inline;
+	}
+	
+	.btn:hover
+	{
+		background-color: #ffff00;
+		border: 3px solid green;
+	}
+	
+	.btn.btn-primary
+	{
+		border: 2px solid red;
+	}
+	
+	@media screen and (max-width: 600px)
+	{
+		.btn{
+			background-color: #0000ff;
+			float:inline;
+		}
+		
+		.btn:hover{
+			background-color: #0ffff0;
+		}
+	}
+	
+	.sdiv{
+		width:300px;
+		height:300px;
+		background-color:green;
+
+	}
+	
+	@media only screen and (
+</style>
+
+
+
+<script>
+	function eventListener()
+	{
+		console.log("clicked");
+	}
+	
+	var btn = document.getElementById('btn');
+	btn.addEventListener("click",(e)=>{console.log(e.target.id);},true);
+
+
+	function inputListener(m,$event)
+	{
+		let e = event;
+		console.log(e.target.value +' ' + m);
+	}
+</script>
+</html>

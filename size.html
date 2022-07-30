@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<body>
+<div>
+	<p class="cls-div">
+hello world!
+	</p>
+</div>
+</body>
+<style>
+.cls-div{
+	
+	border: 1.5px solid blue;
+	margin: 3.75px 2px 18px 22px;
+	padding: 15px 22px 8px 10px;
+	width: 163.52px;
+	height: 100.88px;
+	position: relative;
+	top: 11.88px;
+	left: 23.77px;
+	background-color: gray;
+	font: 400 1.5em 'Arial';
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+
+.cls-div::before{
+	content:"YEHEY";
+}
+
+.cls-p{
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+</style>
+<script>
+var el = document.getElementsByClassName("cls-div")[0];
+//el.addEventListener("click",(e)=>console.log(e));
+//el.addEventListener("kill",(e)=>console.log(e));
+</script>
+</html>
